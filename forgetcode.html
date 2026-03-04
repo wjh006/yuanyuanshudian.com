@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮邮书店 - 找回密码</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+            background-color: #f5f3ef;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .forgot-container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 400px;
+        }
+        .bookstore-title {
+            text-align: center;
+            color: #8b5a2b;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .forgot-form {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 320px;
+        }
+        .forgot-form h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+        .forgot-form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 14px;
+        }
+        .forgot-form input {
+            width: 100%;
+            max-width: 280px;
+            padding: 12px 15px;
+            margin: 0 auto 18px;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .code-box {
+            max-width: 280px;
+            margin: 0 auto 18px;
+            display: flex;
+            gap: 10px;
+        }
+        .code-box input {
+            flex: 1;
+            margin: 0;
+        }
+        .code-box button {
+            width: 100px;
+            padding: 12px 0;
+            background-color: #9c7448;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .code-box button:hover {
+            background-color: #8b5a2b;
+        }
+        .forgot-form button[type="submit"] {
+            width: 100%;
+            max-width: 280px;
+            padding: 12px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 auto;
+            display: block;
+        }
+        .forgot-form button[type="submit"]:hover {
+            background-color: #704821;
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links a {
+            color: #8b5a2b;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin: 8px 0;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="forgot-container">
+        <h1 class="bookstore-title">邮邮书店欢迎您</h1>
+        <form class="forgot-form">
+            <h2>找回密码</h2>
+            <label for="phone">绑定的手机号</label>
+            <input type="tel" id="phone" name="phone" required placeholder="请输入注册时的手机号">
+            
+            <label for="code">验证码</label>
+            <div class="code-box">
+                <input type="text" id="code" name="code" required placeholder="请输入6位验证码">
+                <button type="button" id="getCode">获取验证码</button>
+            </div>
+            
+            <label for="newpassword">设置新密码</label>
+            <input type="password" id="newpassword" name="newpassword" required placeholder="请设置新密码">
+            
+            <button type="submit">重置密码</button>
+        </form>
+
+        <div class="links">
+            <a href="login.html">返回登录</a>
+            <a href="register.html">注册新账号</a>
+        </div>
+    </div>
+
+    <script>
+        let countdown = 0;
+        document.getElementById('getCode').addEventListener('click', function() {
+            const phone = document.getElementById('phone').value;
+            if (!phone) {
+                alert('请先输入手机号！');
+                return;
+            }
+            if (countdown > 0) return;
+            
+            countdown = 60;
+            this.innerText = `${countdown}s后重新获取`;
+            const timer = setInterval(() => {
+                countdown--;
+                this.innerText = `${countdown}s后重新获取`;
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    this.innerText = '获取验证码';
+                    countdown = 0;
+                }
+            }, 1000);
+            alert('验证码已发送，请注意查收！');
+        });
+
+        // 重置密码提交
+        document.querySelector('.forgot-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('密码重置成功！即将跳转到登录页面');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

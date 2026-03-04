@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮邮书店 - 注册</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+            background-color: #f5f3ef;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .register-container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 400px;
+        }
+        .bookstore-title {
+            text-align: center;
+            color: #8b5a2b;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .register-form {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 320px;
+        }
+        .register-form h2 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+        .register-form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 14px;
+        }
+        .register-form input:not([type="checkbox"]) {
+            width: 100%;
+            max-width: 280px;
+            padding: 12px 15px;
+            margin: 0 auto 18px;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .checkbox {
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            max-width: 280px;
+            justify-content: flex-start;
+        }
+        .checkbox input {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        .checkbox label {
+            margin-bottom: 0;
+            font-weight: normal;
+            color: #666;
+            cursor: pointer;
+        }
+        .register-form button {
+            width: 100%;
+            max-width: 280px;
+            padding: 12px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 auto;
+            display: block;
+        }
+        .register-form button:hover {
+            background-color: #704821;
+        }
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links a {
+            color: #8b5a2b;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin: 8px 0;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1 class="bookstore-title">邮邮书店欢迎您</h1>
+        <form class="register-form">
+            <h2>注册账号</h2>
+            <label for="username">用户名</label>
+            <input type="text" id="username" name="username" required placeholder="请设置用户名">
+            
+            <label for="phone">手机号</label>
+            <input type="tel" id="phone" name="phone" required placeholder="请输入手机号">
+            
+            <label for="password">设置密码</label>
+            <input type="password" id="password" name="password" required placeholder="请设置6-16位密码">
+            
+            <label for="repassword">确认密码</label>
+            <input type="password" id="repassword" name="repassword" required placeholder="请再次输入密码">
+            
+            <div class="checkbox">
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">我已阅读并同意《用户协议》和《隐私政策》</label>
+            </div>
+            
+            <button type="submit">完成注册</button>
+        </form>
+
+        <div class="links">
+            <a href="login.html">已有账号？去登录</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pwd = document.getElementById('password').value;
+            const repwd = document.getElementById('repassword').value;
+            if (pwd !== repwd) {
+                alert('两次输入的密码不一致！');
+                return;
+            }
+            alert('注册成功！即将跳转到登录页面');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
